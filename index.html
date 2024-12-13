@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Chrome Extension Setup Guide</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        line-height: 1.6;
+        margin: 0;
+        padding: 0;
+        background-color: #f9f9f9;
+        color: #333;
+      }
+      header {
+        background: #0078d7;
+        color: #fff;
+        padding: 1em 0;
+        text-align: center;
+      }
+      main {
+        padding: 1em 2em;
+      }
+      section {
+        margin-bottom: 2em;
+      }
+      h1,
+      h2 {
+        color: #0078d7;
+      }
+      code {
+        background: #eee;
+        padding: 0.2em 0.4em;
+        border-radius: 3px;
+        font-family: Consolas, monospace;
+      }
+      ul {
+        margin: 1em 0;
+        padding-left: 1.5em;
+      }
+      footer {
+        text-align: center;
+        margin-top: 2em;
+        padding: 1em;
+        background: #0078d7;
+        color: #fff;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>Setup Guide for the Chrome Extension</h1>
+    </header>
+
+    <main>
+      <section>
+        <h2>Prerequisites</h2>
+        <p>
+          Before setting up the Chrome Extension, ensure you have the following
+          installed:
+        </p>
+        <ul>
+          <li>
+            <strong>Ollama:</strong> Install Ollama from their official website:
+            <a href="https://ollama.ai">https://ollama.ai</a>
+          </li>
+          <li>
+            <strong>Llama 3.2:</strong> Installed and running within Ollama.
+          </li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>Environment Setup</h2>
+        <p>Set the following environment variables to configure Ollama:</p>
+        <ul>
+          <li><code>OLLAMA_HOST=0.0.0.0</code></li>
+          <li><code>OLLAMA_ORIGINS=*</code></li>
+        </ul>
+
+        <h3>Steps for Different Operating Systems:</h3>
+
+        <h4>Windows</h4>
+        <ol>
+          <li>
+            Open the Start menu and search for
+            <strong>Environment Variables</strong>.
+          </li>
+          <li>
+            Click on <strong>Edit the system environment variables</strong>.
+          </li>
+          <li>
+            In the System Properties window, click
+            <strong>Environment Variables</strong>.
+          </li>
+          <li>
+            Under <strong>System Variables</strong>, click
+            <strong>New</strong> and add:
+            <ul>
+              <li>Variable name: <code>OLLAMA_HOST</code></li>
+              <li>Variable value: <code>0.0.0.0</code></li>
+            </ul>
+          </li>
+          <li>
+            Repeat the above step for <code>OLLAMA_ORIGINS</code> with value
+            <code>*</code>.
+          </li>
+          <li>Click <strong>OK</strong> to save.</li>
+        </ol>
+
+        <h4>macOS</h4>
+        <ol>
+          <li>Open the Terminal.</li>
+          <li>
+            Edit your shell configuration file (<code>.zshrc</code> or
+            <code>.bashrc</code>):
+            <ul>
+              <li>
+                Run <code>nano ~/.zshrc</code> (or <code>nano ~/.bashrc</code>).
+              </li>
+            </ul>
+          </li>
+          <li>
+            Add the following lines:
+            <ul>
+              <li><code>export OLLAMA_HOST=0.0.0.0</code></li>
+              <li><code>export OLLAMA_ORIGINS=*</code></li>
+            </ul>
+          </li>
+          <li>
+            Save and exit (press <code>CTRL+X</code>, then <code>Y</code>, and
+            <code>Enter</code>).
+          </li>
+          <li>
+            Run <code>source ~/.zshrc</code> (or <code>source ~/.bashrc</code>)
+            to apply changes.
+          </li>
+        </ol>
+
+        <h4>Linux</h4>
+        <ol>
+          <li>Open the Terminal.</li>
+          <li>
+            Edit your shell configuration file (<code>.bashrc</code> or
+            <code>.zshrc</code>):
+            <ul>
+              <li>
+                Run <code>nano ~/.bashrc</code> (or <code>nano ~/.zshrc</code>).
+              </li>
+            </ul>
+          </li>
+          <li>
+            Add the following lines:
+            <ul>
+              <li><code>export OLLAMA_HOST=0.0.0.0</code></li>
+              <li><code>export OLLAMA_ORIGINS=*</code></li>
+            </ul>
+          </li>
+          <li>
+            Save and exit (press <code>CTRL+X</code>, then <code>Y</code>, and
+            <code>Enter</code>).
+          </li>
+          <li>
+            Run <code>source ~/.bashrc</code> (or <code>source ~/.zshrc</code>)
+            to apply changes.
+          </li>
+        </ol>
+      </section>
+
+      <section>
+        <h2>Using the Extension</h2>
+        <p>
+          Once the prerequisites and environment are set up, you can use the
+          Chrome extension as follows:
+        </p>
+        <ol>
+          <li>Open Gmail and navigate to any email.</li>
+          <li>Click on the <strong>Reply</strong> button.</li>
+          <li>
+            Look for the <code>🤖Reply</code> button in the reply card to
+            generate an AI-driven response.
+          </li>
+        </ol>
+      </section>
+    </main>
+
+    <footer>
+      <p>&copy; 2024 Chrome Extension Setup Guide</p>
+    </footer>
+  </body>
+</html>
