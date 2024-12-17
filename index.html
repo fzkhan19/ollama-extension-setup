@@ -3,252 +3,198 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Chrome Extension Setup Guide</title>
+    <title>AI Mailer - Gemini API Setup</title>
     <style>
+      :root {
+        --primary-color: #4285f4;
+        --secondary-color: #34a853;
+        --accent-color: #ea4335;
+        --text-color: #202124;
+      }
+
       body {
-        font-family: Arial, sans-serif;
+        font-family: "Google Sans", Arial, sans-serif;
         line-height: 1.6;
         margin: 0;
-        padding: 0;
-        background-color: #f9f9f9;
-        color: #333;
+        color: var(--text-color);
       }
-      header {
-        background: #0078d7;
-        color: #fff;
-        padding: 1em 0;
+
+      .navbar {
+        background: white;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        padding: 1rem 2rem;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+
+      .logo-container {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+      }
+
+      .logo {
+        height: 64px;
+      }
+
+      .brand-name {
+        font-size: 1.5rem;
+        font-weight: 600;
+        color: var(--primary-color);
+      }
+
+      .hero {
+        background: linear-gradient(
+          135deg,
+          var(--primary-color),
+          var(--secondary-color)
+        );
+        color: white;
+        padding: 4rem 2rem;
         text-align: center;
       }
-      main {
-        padding: 1em 2em;
+
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 2rem;
       }
-      section {
-        margin-bottom: 2em;
+
+      .step-card {
+        background: white;
+        border-radius: 8px;
+        padding: 2rem;
+        margin: 1rem 0;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
       }
-      h1,
-      h2 {
-        color: #0078d7;
+
+      .warning-card {
+        background: #fef7e0;
+        border-left: 4px solid #fbbc04;
+        padding: 1.5rem;
+        margin: 2rem 0;
+        border-radius: 4px;
       }
-      code {
-        background: #eee;
-        padding: 0.2em 0.4em;
-        border-radius: 3px;
-        font-family: Consolas, monospace;
-      }
-      ul {
-        margin: 1em 0;
-        padding-left: 1.5em;
-      }
+
       footer {
+        background: var(--text-color);
+        color: white;
+        padding: 2rem;
         text-align: center;
-        margin-top: 2em;
-        padding: 1em;
-        background: #0078d7;
-        color: #fff;
+      }
+
+      .footer-links a {
+        color: white;
+        text-decoration: none;
+        margin: 0 1rem;
+      }
+
+      .btn {
+        background: var(--primary-color);
+        color: white;
+        padding: 0.8rem 1.5rem;
+        border-radius: 4px;
+        text-decoration: none;
+        display: inline-block;
+        transition: background 0.3s;
+      }
+
+      .btn:hover {
+        background: #3367d6;
+      }
+
+      .video-container {
+        display: flex;
+        align-items: start;
       }
       @media (max-width: 1200px) {
-        main {
+        .video-container {
           flex-direction: column;
+          align-items: center;
+          width: 100%;
+        }
+        .container {
+          margin: 24px;
+          width: 100%;
         }
       }
     </style>
   </head>
   <body>
-    <header>
-      <h1
-        style="
-          color: #fff;
-          display: flex;
-          justify-content: center;
-          align-items: center;
-        "
-      >
-        <img src="logo.png" alt="Ollama Logo" width="100" />
-        Setup Guide for the Ollama Email Assistant
-      </h1>
-    </header>
-
-    <main style="display: flex; justify-content: center">
-      <div>
-        <section>
-          <h2>Prerequisites</h2>
-          <p>
-            Before setting up the Chrome Extension, ensure you have the
-            following installed:
-          </p>
-          <ul>
-            <li>
-              <strong>Ollama:</strong> Install Ollama from their official
-              website:
-              <a href="https://ollama.ai" target="_blank">https://ollama.ai</a>
-            </li>
-          </ul>
-        </section>
-
-        <section>
-          <h2>Environment Setup</h2>
-          <p>Set the following environment variables to configure Ollama:</p>
-          <ul>
-            <li><code>OLLAMA_HOST=0.0.0.0</code></li>
-            <li><code>OLLAMA_ORIGINS=*</code></li>
-          </ul>
-
-          <h3>Steps for Different Operating Systems:</h3>
-
-          <h4>Windows</h4>
-          <ol>
-            <li>
-              Open the Start menu and search for
-              <strong>Environment Variables</strong>.
-            </li>
-            <li>
-              Click on <strong>Edit the system environment variables</strong>.
-            </li>
-            <li>
-              In the System Properties window, click
-              <strong>Environment Variables</strong>.
-            </li>
-            <li>
-              Under <strong>System Variables</strong>, click
-              <strong>New</strong> and add:
-              <ul>
-                <li>Variable name: <code>OLLAMA_HOST</code></li>
-                <li>Variable value: <code>0.0.0.0</code></li>
-              </ul>
-            </li>
-            <li>
-              Repeat the above step for <code>OLLAMA_ORIGINS</code> with value
-              <code>*</code>.
-            </li>
-            <li>Click <strong>OK</strong> to save.</li>
-          </ol>
-
-          <h4>macOS</h4>
-          <ol>
-            <li>Open the Terminal.</li>
-            <li>
-              Edit your shell configuration file (<code>.zshrc</code> or
-              <code>.bashrc</code>):
-              <ul>
-                <li>
-                  Run <code>nano ~/.zshrc</code> (or
-                  <code>nano ~/.bashrc</code>).
-                </li>
-              </ul>
-            </li>
-            <li>
-              Add the following lines:
-              <ul>
-                <li><code>export OLLAMA_HOST=0.0.0.0</code></li>
-                <li><code>export OLLAMA_ORIGINS=*</code></li>
-              </ul>
-            </li>
-            <li>
-              Save and exit (press <code>CTRL+X</code>, then <code>Y</code>, and
-              <code>Enter</code>).
-            </li>
-            <li>
-              Run <code>source ~/.zshrc</code> (or
-              <code>source ~/.bashrc</code>) to apply changes.
-            </li>
-          </ol>
-
-          <h4>Linux</h4>
-          <ol>
-            <li>Open the Terminal.</li>
-            <li>
-              Edit your shell configuration file (<code>.bashrc</code> or
-              <code>.zshrc</code>):
-              <ul>
-                <li>
-                  Run <code>nano ~/.bashrc</code> (or
-                  <code>nano ~/.zshrc</code>).
-                </li>
-              </ul>
-            </li>
-            <li>
-              Add the following lines:
-              <ul>
-                <li><code>export OLLAMA_HOST=0.0.0.0</code></li>
-                <li><code>export OLLAMA_ORIGINS=*</code></li>
-              </ul>
-            </li>
-            <li>
-              Save and exit (press <code>CTRL+X</code>, then <code>Y</code>, and
-              <code>Enter</code>).
-            </li>
-            <li>
-              Run <code>source ~/.bashrc</code> (or
-              <code>source ~/.zshrc</code>) to apply changes.
-            </li>
-          </ol>
-        </section>
-
-        <section>
-          <h2>Installing Llama 3.2</h2>
-          <p>
-            To install Llama 3.2, follow the instructions for your operating
-            system:
-          </p>
-
-          <h4>Windows</h4>
-          <ol>
-            <li>Open Command Prompt.</li>
-            <li>Run the following command:</li>
-            <code>ollama run llama3.2</code>
-          </ol>
-
-          <h4>macOS</h4>
-          <ol>
-            <li>Open Terminal.</li>
-            <li>Run the following command:</li>
-            <code>ollama run llama3.2</code>
-          </ol>
-
-          <h4>Linux</h4>
-          <ol>
-            <li>Open Terminal.</li>
-            <li>Run the following command:</li>
-            <code>ollama run llama3.2</code>
-          </ol>
-        </section>
-
-        <section>
-          <h2>Using the Extension</h2>
-          <p>
-            Once the prerequisites and environment are set up, you can use the
-            Chrome extension as follows:
-          </p>
-          <ol>
-            <li>Open Gmail and navigate to any email.</li>
-            <li>Click on the <strong>Reply</strong> button.</li>
-            <li>
-              Look for the <code>🤖Reply</code> button in the reply card to
-              generate an AI-driven response.
-            </li>
-          </ol>
-        </section>
+    <nav class="navbar">
+      <div class="logo-container">
+        <img src="logo.png" alt="AI Email Assistant Logo" class="logo" />
+        <span class="brand-name">AI Mailer</span>
       </div>
-      <div>
-        <section>
-          <h2>Video Tutorial</h2>
-          <p>Watch the video tutorial below for a step-by-step guide:</p>
-          <video width="600" controls>
-            <source src="tutorial.mp4" type="video/mp4" />
-            Your browser does not support the video tag.
-          </video>
-        </section>
+      <div class="nav-links">
+        <a href="privacy.html" class="btn">Privacy Policy</a>
       </div>
-    </main>
+    </nav>
+
+    <div class="hero">
+      <h1>Set Up Your Gemini API Key</h1>
+      <p>Power your email responses with Google's advanced AI technology</p>
+    </div>
+
+    <div class="video-container">
+      <div class="container">
+        <div class="step-card">
+          <h2>1. Access Google AI Studio</h2>
+          <p>
+            Visit
+            <a href="https://makersuite.google.com/app/apikey" target="_blank"
+              >Google AI Studio</a
+            >
+            and sign in with your Google account.
+          </p>
+        </div>
+
+        <div class="step-card">
+          <h2>2. Create Your API Key</h2>
+          <ol>
+            <li>Click "Get API Key" in the top right corner</li>
+            <li>Select "Create API key"</li>
+            <li>Copy and securely store your new API key</li>
+          </ol>
+        </div>
+
+        <div class="step-card">
+          <h2>3. Configure the Extension</h2>
+          <ol>
+            <li>Open the AI Email Assistant extension</li>
+            <li>Click the Settings icon</li>
+            <li>Paste your Gemini API key</li>
+            <li>Save your changes</li>
+          </ol>
+        </div>
+
+        <div class="warning-card">
+          <h3>🔒 Security Best Practices</h3>
+          <ul>
+            <li>Keep your API key private and secure</li>
+            <li>Never share your key in public repositories</li>
+            <li>Monitor your API usage regularly</li>
+          </ul>
+        </div>
+      </div>
+      <video width="600" controls style="padding: 24px; border-radius: 40px">
+        <source src="tutorial.mp4" type="video/mp4" />
+        Your browser does not support the video tag.
+      </video>
+    </div>
 
     <footer>
-      <p>
-        © 2025 Ollama Email Assistant Setup Guide |
-        <a href="privacy.html" style="color: #fff; text-decoration: underline"
-          >Privacy Policy</a
+      <div class="footer-links">
+        <a href="index.html">Home</a>
+        <a href="privacy.html">Privacy Policy</a>
+        <a
+          href="https://github.com/yourusername/ai-email-assistant"
+          target="_blank"
+          >GitHub</a
         >
-      </p>
+      </div>
+      <p>© 2024 AI Email Assistant. All rights reserved.</p>
     </footer>
-</body>
   </body>
 </html>
